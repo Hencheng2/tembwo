@@ -260,7 +260,7 @@
             pointer-events: auto;
         }
 
-        /* floating WhatsApp */
+        /* floating WhatsApp — updated with subtle pulse + custom message via href */
         .wa-float {
             position: fixed;
             bottom: 30px;
@@ -488,7 +488,7 @@
             background: var(--primary-50);
         }
 
-        /* services & modal unchanged */
+        /* services & modal (updated with richer modal content) */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -817,7 +817,7 @@
                 <div class="logo-frame">
                     <img src="image/logo.png" alt="Tembwo Cleaning" onerror="this.onerror=null; this.src='https://via.placeholder.com/60x60?text=Tembwo';">
                 </div>
-                <div class="brand">Tembwo <span>Cleaning</span></div>
+                <div class="brand">Tembwo <span>Cleaning Services</span></div>
             </div>
             <nav>
                 <ul>
@@ -842,7 +842,8 @@
         </ul>
     </div>
 
-    <a href="https://wa.me/254729553755" class="wa-float" target="_blank" title="Chat on WhatsApp">
+    <!-- WhatsApp with custom pre-filled message -->
+    <a href="https://wa.me/254729553755?text=Hello%20Tembwo%20Cleaning!%20I'm%20interested%20in%20your%20professional%20cleaning%20services.%20Could%20you%20share%20more%20details%3F" class="wa-float" target="_blank" title="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -874,7 +875,7 @@
             </div>
         </section>
 
-        <!-- SERVICES -->
+        <!-- SERVICES (modal content enriched) -->
         <section id="services" class="section">
             <div class="container">
                 <h2 class="section-title">Cleaning services</h2>
@@ -888,8 +889,26 @@
             </div>
         </section>
 
-        <!-- MODAL -->
-        <div class="modal" id="serviceModal"><div class="modal-card"><button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button><div class="modal-icon" id="modalIcon"><i class="fas fa-broom"></i></div><h2 id="modalTitle">Service details</h2><p id="modalDesc">Detailed description</p><div class="modal-footer"><a href="#contact" class="btn btn-primary" id="modalCta"><i class="fas fa-calendar-check"></i> Book</a><button class="btn-outline btn" id="modalCloseBtn">Close</button></div></div></div>
+        <!-- MODAL with richer context -->
+        <div class="modal" id="serviceModal">
+            <div class="modal-card">
+                <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+                <div class="modal-icon" id="modalIcon"><i class="fas fa-broom"></i></div>
+                <h2 id="modalTitle">Service details</h2>
+                <p id="modalDesc" style="margin: 1rem 0 2rem; font-size:1.1rem;">Detailed description</p>
+                <!-- new: extra bullet points for richer context (appended via js but we keep structure) -->
+                <div id="modalExtras" style="text-align:left; background:var(--primary-50); padding:1rem; border-radius:24px; margin-bottom:1.8rem;">
+                    <ul style="list-style:none; color:var(--gray-800);" id="modalBullets">
+                        <li><i class="fas fa-check-circle" style="color:var(--primary-600);"></i> Includes all supplies</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--primary-600);"></i> Trained & vetted staff</li>
+                    </ul>
+                </div>
+                <div class="modal-footer" style="display:flex; gap:1rem; justify-content:center;">
+                    <a href="#contact" class="btn btn-primary" id="modalCta"><i class="fas fa-calendar-check"></i> Book</a>
+                    <button class="btn-outline btn" id="modalCloseBtn">Close</button>
+                </div>
+            </div>
+        </div>
 
         <!-- ABOUT -->
         <section id="about" class="section">
@@ -992,20 +1011,68 @@
             overlay.addEventListener('click', closeMobile);
             document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeMobile));
 
-            // modal
+            // modal with richer context
             const modal = document.getElementById('serviceModal');
             const modalTitle = document.getElementById('modalTitle');
             const modalDesc = document.getElementById('modalDesc');
             const modalIcon = document.getElementById('modalIcon');
+            const modalBullets = document.getElementById('modalBullets');
             const modalClose = document.getElementById('modalClose');
             const modalCloseBtn = document.getElementById('modalCloseBtn');
             const modalCta = document.getElementById('modalCta');
+            
+            // enriched descriptions and bullets
             const serviceDetails = {
-                home: { title: 'Home cleaning', desc: 'Vacuuming, mopping, kitchen & bath. Safe products.', icon: 'fa-home' },
-                office: { title: 'Office cleaning', desc: 'After‑hours, carpet, desk wipe.', icon: 'fa-building' },
-                eco: { title: 'Eco deep clean', desc: 'Chemical‑free, HEPA, plant‑based.', icon: 'fa-leaf' },
-                move: { title: 'Move in/out', desc: 'Full vacancy clean, inside cabinets.', icon: 'fa-truck' }
+                home: { 
+                    title: 'Home cleaning', 
+                    desc: 'Complete residential cleaning for a fresh, healthy home.', 
+                    icon: 'fa-home',
+                    bullets: [
+                        '✔️ Vacuuming & mopping all floors',
+                        '✔️ Kitchen deep clean (counters, sink, appliances)',
+                        '✔️ Bathroom scrubbing & disinfection',
+                        '✔️ Dusting & surface wiping',
+                        '✔️ Eco-friendly products available on request'
+                    ] 
+                },
+                office: { 
+                    title: 'Office cleaning', 
+                    desc: 'Professional commercial cleaning that boosts productivity.', 
+                    icon: 'fa-building',
+                    bullets: [
+                        '✔️ After‑hours service to avoid disruption',
+                        '✔️ Carpet & upholstery vacuuming',
+                        '✔️ Desk & electronics wiping (safe cleaning)',
+                        '✔️ Kitchen/break room sanitation',
+                        '✔️ Window cleaning available'
+                    ] 
+                },
+                eco: { 
+                    title: 'Eco deep clean', 
+                    desc: 'Chemical‑free, hypoallergenic, and environmentally safe.', 
+                    icon: 'fa-leaf',
+                    bullets: [
+                        '✔️ 100% plant‑based, non‑toxic products',
+                        '✔️ HEPA filter vacuuming for allergens',
+                        '✔️ Steam cleaning optional',
+                        '✔️ Safe for children & pets',
+                        '✔️ Biodegradable materials used'
+                    ] 
+                },
+                move: { 
+                    title: 'Move in/out', 
+                    desc: 'Stress‑free vacancy cleaning for new beginnings.', 
+                    icon: 'fa-truck',
+                    bullets: [
+                        '✔️ Full interior cleaning (all rooms)',
+                        '✔️ Inside cabinets, closets, and drawers',
+                        '✔️ Appliance cleaning (fridge, oven)',
+                        '✔️ Wall spot cleaning & baseboards',
+                        '✔️ Refundable deposit / landlord ready'
+                    ] 
+                }
             };
+
             document.querySelectorAll('.learnMoreBtn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -1015,13 +1082,21 @@
                     if (h3.includes('Office')) service = 'office';
                     else if (h3.includes('Eco')) service = 'eco';
                     else if (h3.includes('Move')) service = 'move';
+                    
                     const data = serviceDetails[service];
                     modalTitle.innerText = data.title;
                     modalDesc.innerText = data.desc;
-                    modalIcon.innerHTML = `<i class="fas ${data.icon}"></i>`;
+                    modalIcon.innerHTML = `<i class="fas ${data.icon}" style="font-size:3rem; color:var(--primary-600);"></i>`;
+                    
+                    // populate bullet list
+                    if (modalBullets) {
+                        modalBullets.innerHTML = data.bullets.map(b => `<li style="margin-bottom:0.5rem;"><i class="fas fa-check-circle" style="color:var(--primary-500); margin-right:8px;"></i>${b.replace('✔️','')}</li>`).join('');
+                    }
+                    
                     modal.classList.add('show');
                 });
             });
+
             function closeModal() { modal.classList.remove('show'); }
             modalClose.addEventListener('click', closeModal);
             modalCloseBtn.addEventListener('click', closeModal);
