@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tembwo Cleaning Services | professional & reliable</title>
+    <title>Tembwo Cleaning | professional & reliable</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts: Inter + Space Grotesk -->
@@ -188,7 +188,7 @@
             width: 100%;
         }
 
-        /* mobile menu toggle (hidden by default, shown on <900px) */
+        /* mobile menu (improved: hidden overlay, but we build a functional slide-in) */
         .menu-toggle {
             display: none;
             background: none;
@@ -198,7 +198,63 @@
             cursor: pointer;
         }
 
-        /* -------------------- HERO (fresh & spacious) -------------------- */
+        /* mobile nav overlay – improved */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: var(--shadow-xl);
+            padding: 5rem 2rem 2rem;
+            transform: translateX(100%);
+            transition: transform 0.4s ease;
+            z-index: 200;
+        }
+        .mobile-nav.open {
+            transform: translateX(0);
+        }
+        .mobile-nav ul {
+            list-style: none;
+        }
+        .mobile-nav li {
+            margin-bottom: 2rem;
+        }
+        .mobile-nav a {
+            font-size: 1.6rem;
+            text-decoration: none;
+            color: var(--gray-800);
+            font-weight: 500;
+        }
+        .close-menu {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray-600);
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 150;
+        }
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* -------------------- HERO -------------------- */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -309,7 +365,7 @@
             color: var(--primary-400);
         }
 
-        /* -------------------- SERVICES (cards) -------------------- */
+        /* -------------------- SERVICES CARDS (improved) -------------------- */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -325,6 +381,9 @@
             transition: var(--transition);
             border: 1px solid var(--gray-200);
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         .service-card:hover {
             transform: translateY(-12px);
@@ -355,6 +414,7 @@
         .service-card p {
             color: var(--gray-600);
             margin-bottom: 1.8rem;
+            flex: 1;
         }
 
         .service-link {
@@ -364,16 +424,83 @@
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            margin-top: auto;
+            align-self: center;
         }
 
-        /* -------------------- ABOUT (clean split) -------------------- */
+        /* -------------------- MODAL (enhancement) -------------------- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(26, 47, 37, 0.7);
+            backdrop-filter: blur(6px);
+            align-items: center;
+            justify-content: center;
+            z-index: 300;
+        }
+        .modal.show {
+            display: flex;
+        }
+        .modal-card {
+            background: var(--white);
+            max-width: 500px;
+            width: 90%;
+            padding: 3rem 2rem;
+            border-radius: 60px 20px 60px 20px;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+        }
+        .modal-card i.modal-icon {
+            font-size: 4rem;
+            color: var(--primary-500);
+            background: var(--primary-50);
+            width: 100px;
+            height: 100px;
+            border-radius: 30px 10px 30px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        .modal-card h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+        .modal-card p {
+            color: var(--gray-600);
+            margin: 1.2rem 0 2rem;
+            font-size: 1.1rem;
+        }
+        .modal-close {
+            position: absolute;
+            top: 1.5rem; right: 1.5rem;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray-500);
+        }
+        .modal-footer {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* -------------------- ABOUT, CONTACT (minor enhancements) -------------------- */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 5rem;
             align-items: center;
         }
-
         .about-gallery {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -391,42 +518,6 @@
             background: var(--accent-50);
             margin-top: 3rem;
         }
-        .gallery-item i {
-            font-size: 3rem;
-            color: var(--primary-600);
-            margin-bottom: 0.8rem;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: var(--gray-900);
-        }
-        .about-text p {
-            margin: 2rem 0;
-            color: var(--gray-600);
-            font-size: 1.15rem;
-        }
-
-        .about-features {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        .feature-badge {
-            background: var(--white);
-            padding: 0.5rem 1.5rem;
-            border-radius: 40px;
-            font-weight: 500;
-            box-shadow: var(--shadow-xs);
-            border: 1px solid var(--gray-200);
-        }
-
-        /* -------------------- CONTACT (with phone) -------------------- */
-        .contact-section {
-            background: var(--white);
-        }
-
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -436,13 +527,6 @@
             padding: 4rem;
             border: 1px solid var(--gray-200);
         }
-
-        .contact-info h3 {
-            font-size: 2.2rem;
-            color: var(--gray-900);
-            margin-bottom: 2rem;
-        }
-
         .phone-large {
             font-size: 2.4rem;
             font-weight: 700;
@@ -452,72 +536,6 @@
             align-items: center;
             gap: 1rem;
         }
-
-        .contact-details {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        .detail-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 1.1rem;
-            color: var(--gray-700);
-        }
-        .detail-item i {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-100);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-700);
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        .form-input {
-            width: 100%;
-            padding: 1.2rem 1.5rem;
-            border: 2px solid var(--gray-200);
-            border-radius: 50px;
-            font-size: 1rem;
-            transition: var(--transition);
-            background: var(--white);
-        }
-        .form-input:focus {
-            border-color: var(--primary-400);
-            outline: none;
-            box-shadow: 0 0 0 4px var(--primary-100);
-        }
-        textarea.form-input {
-            border-radius: 30px;
-            resize: vertical;
-        }
-        .btn-submit {
-            background: var(--primary-600);
-            color: white;
-            padding: 1.2rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .btn-submit:hover {
-            background: var(--primary-700);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* footer */
         footer {
             background: var(--gray-900);
             color: var(--gray-300);
@@ -528,19 +546,7 @@
             grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 3rem;
         }
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 600;
-            color: white;
-        }
-        .footer-bottom {
-            text-align: center;
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--gray-700);
-        }
 
-        /* responsive */
         @media (max-width: 900px) {
             .hero-grid, .about-grid, .contact-container, .footer-grid {
                 grid-template-columns: 1fr;
@@ -559,8 +565,7 @@
         <div class="container header-inner">
             <div class="logo-wrapper">
                 <div class="logo-frame">
-                    <!-- logo from image folder: logo.png -->
-                    <img src="image/logo.png" alt="Tembwo Cleaning Services" onerror="this.onerror=null; this.src='https://via.placeholder.com/60x60?text=Tembwo';">
+                    <img src="image/logo.png" alt="Tembwo Cleaning" onerror="this.onerror=null; this.src='https://via.placeholder.com/60x60?text=Tembwo';">
                 </div>
                 <div class="brand">Tembwo <span>Cleaning</span></div>
             </div>
@@ -572,12 +577,24 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+            <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
         </div>
     </header>
 
+    <!-- mobile navigation overlay (improved) -->
+    <div class="overlay" id="overlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <button class="close-menu" id="closeMenu"><i class="fas fa-times"></i></button>
+        <ul>
+            <li><a href="#home" class="mobile-link">Home</a></li>
+            <li><a href="#services" class="mobile-link">Services</a></li>
+            <li><a href="#about" class="mobile-link">About</a></li>
+            <li><a href="#contact" class="mobile-link">Contact</a></li>
+        </ul>
+    </div>
+
     <main>
-        <!-- HERO -->
+        <!-- HERO (unchanged) -->
         <section id="home" class="hero">
             <div class="hero-bg"></div>
             <div class="container hero-grid">
@@ -596,41 +613,56 @@
             </div>
         </section>
 
-        <!-- SERVICES -->
+        <!-- SERVICES with MODAL triggers -->
         <section id="services" class="section">
             <div class="container">
                 <h2 class="section-title">Cleaning services</h2>
                 <div class="section-subtitle">Tailored plans for every space — always with attention to detail.</div>
-                <div class="services-grid">
-                    <div class="service-card">
+                <div class="services-grid" id="servicesGrid">
+                    <!-- card 1 -->
+                    <div class="service-card" data-service="home">
                         <div class="service-icon"><i class="fas fa-home"></i></div>
                         <h3>Home</h3>
                         <p>Regular or deep cleaning for apartments and houses.</p>
-                        <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        <button class="service-link learnMoreBtn"><i class="fas fa-info-circle"></i> Learn more <i class="fas fa-arrow-right"></i></button>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card" data-service="office">
                         <div class="service-icon"><i class="fas fa-building"></i></div>
                         <h3>Office</h3>
                         <p>Professional spaces, after-hours service available.</p>
-                        <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        <button class="service-link learnMoreBtn"><i class="fas fa-info-circle"></i> Learn more <i class="fas fa-arrow-right"></i></button>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card" data-service="eco">
                         <div class="service-icon"><i class="fas fa-leaf"></i></div>
                         <h3>Eco deep clean</h3>
                         <p>Zero harsh chemicals, allergen-free.</p>
-                        <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        <button class="service-link learnMoreBtn"><i class="fas fa-info-circle"></i> Learn more <i class="fas fa-arrow-right"></i></button>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card" data-service="move">
                         <div class="service-icon"><i class="fas fa-truck"></i></div>
                         <h3>Move in/out</h3>
                         <p>Complete vacancy cleaning, stress-free.</p>
-                        <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        <button class="service-link learnMoreBtn"><i class="fas fa-info-circle"></i> Learn more <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ABOUT -->
+        <!-- MODAL (dynamic) -->
+        <div class="modal" id="serviceModal">
+            <div class="modal-card">
+                <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+                <div class="modal-icon" id="modalIcon"><i class="fas fa-broom"></i></div>
+                <h2 id="modalTitle">Service details</h2>
+                <p id="modalDesc">Detailed description appears here. We tailor every clean to your needs with eco-friendly options and insured staff.</p>
+                <div class="modal-footer">
+                    <a href="#contact" class="btn btn-primary" id="modalCta"><i class="fas fa-calendar-check"></i> Book</a>
+                    <button class="btn-outline btn" id="modalCloseBtn">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABOUT (unchanged layout) -->
         <section id="about" class="section">
             <div class="container about-grid">
                 <div class="about-gallery">
@@ -651,7 +683,7 @@
             </div>
         </section>
 
-        <!-- CONTACT with phone number -->
+        <!-- CONTACT (unchanged) -->
         <section id="contact" class="contact-section section">
             <div class="container">
                 <div class="contact-container">
@@ -694,7 +726,7 @@
                 <div>
                     <h4>Quick links</h4>
                     <ul style="list-style: none; margin-top: 1rem;">
-                        <li><a href="#" style="color: var(--gray-300); text-decoration: none;">Home</a></li>
+                        <li><a href="#home" style="color: var(--gray-300); text-decoration: none;">Home</a></li>
                         <li><a href="#services" style="color: var(--gray-300); text-decoration: none;">Services</a></li>
                         <li><a href="#about" style="color: var(--gray-300); text-decoration: none;">About</a></li>
                     </ul>
@@ -715,20 +747,127 @@
     </footer>
 
     <script>
-        // header scroll effect
-        window.addEventListener('scroll', function() {
+        (function() {
+            // header scroll effect
             const header = document.getElementById('header');
-            if (window.scrollY > 20) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 20) header.classList.add('scrolled');
+                else header.classList.remove('scrolled');
+            });
 
-        // simple mobile menu toggle (could be extended, but keeps production ready)
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            alert('Mobile menu would open here – fully responsive layout ready.');
-        });
+            // improved mobile menu
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileNav = document.getElementById('mobileNav');
+            const overlay = document.getElementById('overlay');
+            const closeMenu = document.getElementById('closeMenu');
+
+            function openMobile() {
+                mobileNav.classList.add('open');
+                overlay.classList.add('active');
+            }
+            function closeMobile() {
+                mobileNav.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+            menuToggle.addEventListener('click', openMobile);
+            closeMenu.addEventListener('click', closeMobile);
+            overlay.addEventListener('click', closeMobile);
+            // close on mobile link click
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', closeMobile);
+            });
+
+            // MODAL functionality for learn more (enhancement)
+            const modal = document.getElementById('serviceModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDesc = document.getElementById('modalDesc');
+            const modalIcon = document.getElementById('modalIcon');
+            const modalCloseBtn = document.getElementById('modalClose');
+            const modalCloseBtn2 = document.getElementById('modalCloseBtn');
+            const modalCta = document.getElementById('modalCta');
+
+            // detailed descriptions
+            const serviceDetails = {
+                home: {
+                    title: 'Home cleaning',
+                    desc: 'Our home service includes vacuuming, mopping, dusting, kitchen and bathroom sanitizing. We use safe, non-toxic products. Frequency: weekly, bi-weekly, or one-off deep cleaning. All staff are background-checked.',
+                    icon: 'fa-home',
+                },
+                office: {
+                    title: 'Office & commercial',
+                    desc: 'We work around your schedule — after hours or weekends. Carpet cleaning, trash removal, desk wiping, breakroom sanitation. Custom contracts available. Disinfecting services included.',
+                    icon: 'fa-building',
+                },
+                eco: {
+                    title: 'Eco deep clean',
+                    desc: '100% chemical-free cleaning. HEPA filters, plant-based products, allergen control. Ideal for homes with kids, pets, or sensitivities. Steam cleaning and microfiber techniques.',
+                    icon: 'fa-leaf',
+                },
+                move: {
+                    title: 'Move in / out',
+                    desc: 'Full vacancy cleaning: inside cabinets, baseboards, light fixtures, appliance interiors, and window sills. We help you get your deposit back or prepare a warm welcome. Stress-free and thorough.',
+                    icon: 'fa-truck',
+                }
+            };
+
+            function showModal(serviceKey) {
+                const data = serviceDetails[serviceKey] || serviceDetails.home;
+                modalTitle.innerText = data.title;
+                modalDesc.innerText = data.desc;
+                modalIcon.innerHTML = `<i class="fas ${data.icon}"></i>`;
+                modal.classList.add('show');
+            }
+
+            // attach event to each "Learn more" button
+            document.querySelectorAll('.learnMoreBtn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const card = btn.closest('.service-card');
+                    let service = 'home';
+                    if (card) {
+                        if (card.querySelector('h3')?.innerText.includes('Office')) service = 'office';
+                        else if (card.querySelector('h3')?.innerText.includes('Eco')) service = 'eco';
+                        else if (card.querySelector('h3')?.innerText.includes('Move')) service = 'move';
+                    }
+                    showModal(service);
+                });
+            });
+
+            // close modal
+            function closeModal() {
+                modal.classList.remove('show');
+            }
+            modalCloseBtn.addEventListener('click', closeModal);
+            modalCloseBtn2.addEventListener('click', closeModal);
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // smooth CTA from modal to contact
+            modalCta.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeModal();
+                document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // minor improvement: phone number click to call (mobile)
+            const phoneEl = document.querySelector('.phone-large');
+            if (phoneEl) {
+                phoneEl.addEventListener('click', () => {
+                    window.location.href = 'tel:0729553755';
+                });
+                phoneEl.style.cursor = 'pointer';
+            }
+
+            // form submit prevention for demo
+            const form = document.querySelector('.contact-form');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('📬 Demo: message sent. We’ll get back to you soon!');
+                });
+            }
+        })();
     </script>
 </body>
 </html>
