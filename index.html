@@ -494,7 +494,7 @@
             justify-content: center;
         }
 
-        /* -------------------- ABOUT, CONTACT (minor enhancements) -------------------- */
+        /* -------------------- ABOUT (unchanged layout, slight polish) -------------------- */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -518,24 +518,176 @@
             background: var(--accent-50);
             margin-top: 3rem;
         }
+        .feature-badge {
+            display: inline-block;
+            margin-right: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* -------------------- ✨ ENHANCED CONTACT SECTION (fresh modern look) ✨ -------------------- */
+        .contact-section {
+            background: linear-gradient(145deg, var(--white) 0%, var(--gray-50) 100%);
+        }
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            background: var(--gray-50);
+            gap: 3rem;
+            background: var(--white);
             border-radius: 60px 20px 60px 20px;
-            padding: 4rem;
+            padding: 3.5rem 3.5rem;
+            box-shadow: var(--shadow-xl);
             border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+        .contact-container:hover {
+            box-shadow: var(--shadow-lg);
+        }
+        .contact-info {
+            padding-right: 1.5rem;
+        }
+        .contact-info h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 1.8rem;
+            position: relative;
+        }
+        .contact-info h3:after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 3px;
+            background: var(--primary-400);
+            margin-top: 0.6rem;
+            border-radius: 4px;
         }
         .phone-large {
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             font-weight: 700;
             color: var(--primary-700);
-            margin: 1.5rem 0;
+            margin: 1.8rem 0 1.5rem;
             display: flex;
             align-items: center;
             gap: 1rem;
+            background: var(--primary-50);
+            padding: 0.8rem 1.6rem;
+            border-radius: 80px;
+            border: 1px solid var(--primary-200);
+            width: fit-content;
+            transition: var(--transition);
+            cursor: pointer;
         }
+        .phone-large:hover {
+            background: var(--primary-100);
+            transform: scale(1.02);
+            border-color: var(--primary-400);
+        }
+        .phone-large i {
+            color: var(--primary-600);
+        }
+        .contact-details {
+            background: var(--gray-50);
+            padding: 2rem 1.8rem;
+            border-radius: 40px 16px 40px 16px;
+            border: 1px solid var(--gray-200);
+            margin-top: 1.2rem;
+        }
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            font-size: 1.15rem;
+            color: var(--gray-700);
+            padding: 0.8rem 0;
+            border-bottom: 1px dashed var(--gray-300);
+        }
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        .detail-item i {
+            width: 28px;
+            color: var(--primary-500);
+            font-size: 1.5rem;
+        }
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 2.2rem;
+        }
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            background: var(--white);
+            border-radius: 30px 10px 30px 10px;
+            color: var(--primary-600);
+            font-size: 1.8rem;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            background: var(--primary-600);
+            color: white;
+            border-color: var(--primary-600);
+            transform: translateY(-5px);
+        }
+
+        /* contact form enhancements */
+        .contact-form {
+            background: var(--gray-50);
+            padding: 2.2rem;
+            border-radius: 40px 16px 40px 16px;
+            border: 1px solid var(--gray-200);
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 60px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            background: var(--white);
+            transition: var(--transition);
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 4px var(--primary-100);
+        }
+        textarea.form-input {
+            border-radius: 30px;
+            resize: vertical;
+        }
+        .btn-submit {
+            background: var(--primary-600);
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 16px rgba(45,132,100,0.25);
+            margin-top: 0.6rem;
+        }
+        .btn-submit:hover {
+            background: var(--primary-700);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(35,107,80,0.3);
+        }
+
         footer {
             background: var(--gray-900);
             color: var(--gray-300);
@@ -545,6 +697,18 @@
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 3rem;
+        }
+        .footer-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: white;
+        }
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-700);
+            text-align: center;
         }
 
         @media (max-width: 900px) {
@@ -556,6 +720,12 @@
             }
             .menu-toggle {
                 display: block;
+            }
+            .contact-container {
+                padding: 2rem 1.5rem;
+            }
+            .phone-large {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -613,13 +783,12 @@
             </div>
         </section>
 
-        <!-- SERVICES with MODAL triggers -->
+        <!-- SERVICES with MODAL triggers (unchanged) -->
         <section id="services" class="section">
             <div class="container">
                 <h2 class="section-title">Cleaning services</h2>
                 <div class="section-subtitle">Tailored plans for every space — always with attention to detail.</div>
                 <div class="services-grid" id="servicesGrid">
-                    <!-- card 1 -->
                     <div class="service-card" data-service="home">
                         <div class="service-icon"><i class="fas fa-home"></i></div>
                         <h3>Home</h3>
@@ -648,7 +817,7 @@
             </div>
         </section>
 
-        <!-- MODAL (dynamic) -->
+        <!-- MODAL (dynamic, unchanged) -->
         <div class="modal" id="serviceModal">
             <div class="modal-card">
                 <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
@@ -662,18 +831,18 @@
             </div>
         </div>
 
-        <!-- ABOUT (unchanged layout) -->
+        <!-- ABOUT (unchanged layout, but kept clean) -->
         <section id="about" class="section">
             <div class="container about-grid">
                 <div class="about-gallery">
-                    <div class="gallery-item"><i class="fas fa-elephant"></i> <h4>Reliable</h4></div>
-                    <div class="gallery-item"><i class="fas fa-hand-sparkles"></i> <h4>Detailed</h4></div>
-                    <div class="gallery-item"><i class="fas fa-user-check"></i> <h4>Vetted staff</h4></div>
-                    <div class="gallery-item"><i class="fas fa-calendar-alt"></i> <h4>Flexible</h4></div>
+                    <div class="gallery-item"><i class="fas fa-elephant" style="font-size: 2.5rem;"></i> <h4>Reliable</h4></div>
+                    <div class="gallery-item"><i class="fas fa-hand-sparkles" style="font-size: 2.5rem;"></i> <h4>Detailed</h4></div>
+                    <div class="gallery-item"><i class="fas fa-user-check" style="font-size: 2.5rem;"></i> <h4>Vetted staff</h4></div>
+                    <div class="gallery-item"><i class="fas fa-calendar-alt" style="font-size: 2.5rem;"></i> <h4>Flexible</h4></div>
                 </div>
                 <div class="about-text">
-                    <h2>More than cleaners — we're your partners</h2>
-                    <p>Tembwo was founded in Nairobi with a simple idea: treat every home like our own. We train our team, use safe products, and listen to your needs. From a small apartment to a large office, we bring the same dedication.</p>
+                    <h2 class="section-title" style="font-size: 2.5rem;">More than cleaners — we're your partners</h2>
+                    <p style="font-size: 1.2rem; color: var(--gray-600);">Tembwo was founded in Nairobi with a simple idea: treat every home like our own. We train our team, use safe products, and listen to your needs. From a small apartment to a large office, we bring the same dedication.</p>
                     <div class="about-features">
                         <span class="feature-badge"><i class="fas fa-check-circle" style="color: var(--primary-500);"></i> Insured</span>
                         <span class="feature-badge"><i class="fas fa-check-circle" style="color: var(--primary-500);"></i> Local</span>
@@ -683,28 +852,34 @@
             </div>
         </section>
 
-        <!-- CONTACT (unchanged) -->
+        <!-- CONTACT (ENHANCED section — fresh, modern, but workability untouched) -->
         <section id="contact" class="contact-section section">
             <div class="container">
                 <div class="contact-container">
+                    <!-- LEFT: enriched info -->
                     <div class="contact-info">
-                        <h3>Get in touch</h3>
-                        <div class="phone-large">
+                        <h3>Let’s connect</h3>
+                        <div class="phone-large" id="callNow">
                             <i class="fas fa-phone-alt"></i> 0729 553755
                         </div>
                         <div class="contact-details">
                             <div class="detail-item"><i class="fas fa-envelope"></i> hello@tembwo.co.ke</div>
                             <div class="detail-item"><i class="fas fa-map-marker-alt"></i> Nairobi · Kiambu · Thika</div>
                             <div class="detail-item"><i class="fas fa-clock"></i> Mon–Sat: 8am – 6pm</div>
+                            <div class="detail-item"><i class="fas fa-check-circle"></i> Same‑day booking available</div>
                         </div>
-                        <div style="display: flex; gap: 1.2rem; margin-top: 2rem;">
-                            <a href="#" style="color: var(--primary-600); font-size: 1.8rem;"><i class="fab fa-whatsapp"></i></a>
-                            <a href="#" style="color: var(--primary-600); font-size: 1.8rem;"><i class="fab fa-instagram"></i></a>
-                            <a href="#" style="color: var(--primary-600); font-size: 1.8rem;"><i class="fab fa-facebook"></i></a>
+                        <!-- modern social cards -->
+                        <div class="social-links">
+                            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
                         </div>
                     </div>
+
+                    <!-- RIGHT: form (functionality unchanged) -->
                     <div>
-                        <form class="contact-form">
+                        <form class="contact-form" id="contactForm">
                             <input type="text" placeholder="Your name" class="form-input" required>
                             <input type="email" placeholder="Email address" class="form-input" required>
                             <textarea rows="4" placeholder="How can we help?" class="form-input"></textarea>
@@ -724,7 +899,7 @@
                     <p style="margin-top: 1rem;">Cleaning with care and consistency.</p>
                 </div>
                 <div>
-                    <h4>Quick links</h4>
+                    <h4 style="color:white;">Quick links</h4>
                     <ul style="list-style: none; margin-top: 1rem;">
                         <li><a href="#home" style="color: var(--gray-300); text-decoration: none;">Home</a></li>
                         <li><a href="#services" style="color: var(--gray-300); text-decoration: none;">Services</a></li>
@@ -732,11 +907,11 @@
                     </ul>
                 </div>
                 <div>
-                    <h4>Contact</h4>
+                    <h4 style="color:white;">Contact</h4>
                     <p>0729 553755<br>hello@tembwo.co.ke</p>
                 </div>
                 <div>
-                    <h4>Location</h4>
+                    <h4 style="color:white;">Location</h4>
                     <p>Nairobi, Kenya</p>
                 </div>
             </div>
@@ -772,12 +947,11 @@
             menuToggle.addEventListener('click', openMobile);
             closeMenu.addEventListener('click', closeMobile);
             overlay.addEventListener('click', closeMobile);
-            // close on mobile link click
             document.querySelectorAll('.mobile-link').forEach(link => {
                 link.addEventListener('click', closeMobile);
             });
 
-            // MODAL functionality for learn more (enhancement)
+            // MODAL functionality for learn more (unchanged, fully intact)
             const modal = document.getElementById('serviceModal');
             const modalTitle = document.getElementById('modalTitle');
             const modalDesc = document.getElementById('modalDesc');
@@ -786,28 +960,11 @@
             const modalCloseBtn2 = document.getElementById('modalCloseBtn');
             const modalCta = document.getElementById('modalCta');
 
-            // detailed descriptions
             const serviceDetails = {
-                home: {
-                    title: 'Home cleaning',
-                    desc: 'Our home service includes vacuuming, mopping, dusting, kitchen and bathroom sanitizing. We use safe, non-toxic products. Frequency: weekly, bi-weekly, or one-off deep cleaning. All staff are background-checked.',
-                    icon: 'fa-home',
-                },
-                office: {
-                    title: 'Office & commercial',
-                    desc: 'We work around your schedule — after hours or weekends. Carpet cleaning, trash removal, desk wiping, breakroom sanitation. Custom contracts available. Disinfecting services included.',
-                    icon: 'fa-building',
-                },
-                eco: {
-                    title: 'Eco deep clean',
-                    desc: '100% chemical-free cleaning. HEPA filters, plant-based products, allergen control. Ideal for homes with kids, pets, or sensitivities. Steam cleaning and microfiber techniques.',
-                    icon: 'fa-leaf',
-                },
-                move: {
-                    title: 'Move in / out',
-                    desc: 'Full vacancy cleaning: inside cabinets, baseboards, light fixtures, appliance interiors, and window sills. We help you get your deposit back or prepare a warm welcome. Stress-free and thorough.',
-                    icon: 'fa-truck',
-                }
+                home: { title: 'Home cleaning', desc: 'Our home service includes vacuuming, mopping, dusting, kitchen and bathroom sanitizing. We use safe, non-toxic products. Frequency: weekly, bi-weekly, or one-off deep cleaning. All staff are background-checked.', icon: 'fa-home' },
+                office: { title: 'Office & commercial', desc: 'We work around your schedule — after hours or weekends. Carpet cleaning, trash removal, desk wiping, breakroom sanitation. Custom contracts available. Disinfecting services included.', icon: 'fa-building' },
+                eco: { title: 'Eco deep clean', desc: '100% chemical-free cleaning. HEPA filters, plant-based products, allergen control. Ideal for homes with kids, pets, or sensitivities. Steam cleaning and microfiber techniques.', icon: 'fa-leaf' },
+                move: { title: 'Move in / out', desc: 'Full vacancy cleaning: inside cabinets, baseboards, light fixtures, appliance interiors, and window sills. We help you get your deposit back or prepare a warm welcome. Stress-free and thorough.', icon: 'fa-truck' }
             };
 
             function showModal(serviceKey) {
@@ -818,7 +975,6 @@
                 modal.classList.add('show');
             }
 
-            // attach event to each "Learn more" button
             document.querySelectorAll('.learnMoreBtn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -833,34 +989,24 @@
                 });
             });
 
-            // close modal
-            function closeModal() {
-                modal.classList.remove('show');
-            }
+            function closeModal() { modal.classList.remove('show'); }
             modalCloseBtn.addEventListener('click', closeModal);
             modalCloseBtn2.addEventListener('click', closeModal);
-            window.addEventListener('click', (e) => {
-                if (e.target === modal) closeModal();
-            });
-
-            // smooth CTA from modal to contact
+            window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
             modalCta.addEventListener('click', (e) => {
                 e.preventDefault();
                 closeModal();
                 document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
             });
 
-            // minor improvement: phone number click to call (mobile)
-            const phoneEl = document.querySelector('.phone-large');
+            // enhanced click to call (maintained)
+            const phoneEl = document.getElementById('callNow');
             if (phoneEl) {
-                phoneEl.addEventListener('click', () => {
-                    window.location.href = 'tel:0729553755';
-                });
-                phoneEl.style.cursor = 'pointer';
+                phoneEl.addEventListener('click', () => { window.location.href = 'tel:0729553755'; });
             }
 
-            // form submit prevention for demo
-            const form = document.querySelector('.contact-form');
+            // form submit prevention (same behaviour, just alert)
+            const form = document.getElementById('contactForm');
             if (form) {
                 form.addEventListener('submit', (e) => {
                     e.preventDefault();
