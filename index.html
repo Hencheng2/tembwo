@@ -9,7 +9,7 @@
     <!-- Google Fonts: Inter + Space Grotesk -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* -------------------- RESET & GLOBAL (unchanged base) -------------------- */
+        /* -------------------- RESET & GLOBAL -------------------- */
         * {
             margin: 0;
             padding: 0;
@@ -95,7 +95,7 @@
             margin-bottom: 3rem;
         }
 
-        /* -------------------- HEADER (clean & sticky) -------------------- */
+        /* -------------------- HEADER -------------------- */
         header {
             position: fixed;
             top: 0;
@@ -197,18 +197,18 @@
             cursor: pointer;
         }
 
-        /* ✅ FIXED: mobile nav — now full screen overlay, does NOT block hero content */
+        /* mobile nav full screen */
         .mobile-nav {
             position: fixed;
             top: 0;
-            left: 0;               /* full screen from left */
+            left: 0;
             width: 100%;
             height: 100vh;
             background: var(--white);
             backdrop-filter: blur(4px);
             box-shadow: var(--shadow-xl);
             padding: 5rem 2rem 2rem;
-            transform: translateY(-100%);  /* off screen top (slide from top) */
+            transform: translateY(-100%);
             transition: transform 0.4s ease;
             z-index: 200;
             display: flex;
@@ -217,7 +217,7 @@
             justify-content: center;
         }
         .mobile-nav.open {
-            transform: translateY(0);  /* slide down */
+            transform: translateY(0);
         }
         .mobile-nav ul {
             list-style: none;
@@ -260,7 +260,7 @@
             pointer-events: auto;
         }
 
-        /* floating WhatsApp button */
+        /* floating WhatsApp */
         .wa-float {
             position: fixed;
             bottom: 30px;
@@ -347,13 +347,6 @@
             line-height: 1.05;
             color: var(--gray-900);
             margin-bottom: 1.5rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--gray-600);
-            max-width: 500px;
-            margin-bottom: 2.5rem;
         }
 
         .btn {
@@ -462,7 +455,7 @@
             100% { opacity: 1; transform: translateX(5px); }
         }
 
-        /* ---------- NEW GALLERY SECTION (template images) ---------- */
+        /* gallery template */
         .gallery-template {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -495,7 +488,7 @@
             background: var(--primary-50);
         }
 
-        /* SERVICES, MODAL, ABOUT, CONTACT (unchanged) */
+        /* services & modal unchanged */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -514,18 +507,6 @@
         .service-card:hover {
             transform: translateY(-12px) scale(1.02);
             box-shadow: var(--shadow-md);
-        }
-        .service-icon {
-            font-size: 3.5rem;
-            color: var(--primary-600);
-            background: var(--primary-50);
-            width: 100px;
-            height: 100px;
-            border-radius: 30px 10px 30px 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.8rem;
         }
         .modal {
             display: none;
@@ -548,6 +529,8 @@
             position: relative;
             text-align: center;
         }
+
+        /* ABOUT unchanged */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -564,59 +547,234 @@
             border-radius: 40px 12px 40px 12px;
             padding: 2.5rem 1rem;
             text-align: center;
-            transition: var(--transition);
             border: 1px solid var(--primary-200);
         }
 
-        .contact-section { background: linear-gradient(145deg, var(--white) 0%, var(--gray-50) 100%); }
+        /* ========== MODERN CONTACT SECTION (completely revamped) ========== */
+        .contact-section {
+            background: linear-gradient(145deg, #f0f5f3 0%, #e6efea 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            background: var(--white);
-            border-radius: 60px 20px 60px 20px;
-            padding: 3.5rem 3.5rem;
-            box-shadow: var(--shadow-xl);
-            border: 1px solid var(--gray-200);
+            gap: 2.5rem;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 50px 20px 50px 20px;
+            padding: 3rem 3rem;
+            box-shadow: 0 30px 50px -20px rgba(26, 55, 40, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
         }
+
+        .contact-container:hover {
+            box-shadow: 0 40px 60px -15px rgba(45, 132, 100, 0.3);
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        .contact-info h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
         .phone-large {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
             color: var(--primary-700);
-            margin: 1.8rem 0 1.5rem;
-            display: flex;
+            margin: 1.5rem 0 1.5rem;
+            display: inline-flex;
             align-items: center;
             gap: 1rem;
-            background: var(--primary-50);
-            padding: 0.8rem 1.6rem;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(4px);
+            padding: 0.8rem 2rem;
             border-radius: 80px;
-            width: fit-content;
+            border: 1px solid rgba(92, 185, 153, 0.4);
             cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.02);
         }
-        .contact-details {
-            background: var(--gray-50);
-            padding: 2rem 1.8rem;
+        .phone-large:hover {
+            background: var(--white);
+            border-color: var(--primary-400);
+            transform: scale(1.02) translateY(-2px);
+            box-shadow: 0 12px 24px rgba(45,132,100,0.15);
+        }
+
+        .contact-details-modern {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
             border-radius: 40px 16px 40px 16px;
+            padding: 1.8rem 2rem;
+            border: 1px solid rgba(220, 228, 224, 0.6);
+            margin: 2rem 0 1.5rem;
         }
-        .detail-item {
+
+        .detail-item-modern {
             display: flex;
             align-items: center;
             gap: 1.2rem;
-            font-size: 1.15rem;
-            padding: 0.8rem 0;
-            border-bottom: 1px dashed var(--gray-300);
+            font-size: 1.1rem;
+            color: var(--gray-700);
+            padding: 0.9rem 0;
+            border-bottom: 1px dashed rgba(150, 168, 159, 0.3);
         }
-        .btn-submit {
+        .detail-item-modern:last-child {
+            border-bottom: none;
+        }
+        .detail-item-modern i {
+            width: 28px;
+            color: var(--primary-500);
+            font-size: 1.4rem;
+            background: rgba(255,255,255,0.6);
+            padding: 8px;
+            border-radius: 50%;
+            text-align: center;
+        }
+
+        .social-links-modern {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .social-links-modern a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 30px 10px 30px 10px;
+            color: var(--primary-600);
+            font-size: 1.8rem;
+            border: 1px solid rgba(220, 228, 224, 0.6);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        .social-links-modern a:hover {
+            background: var(--primary-600);
+            color: white;
+            border-color: var(--primary-600);
+            transform: translateY(-5px) rotate(3deg);
+            box-shadow: 0 10px 20px rgba(45,132,100,0.25);
+        }
+
+        /* ----- MODERN FORM (glass, floating labels, smooth) ----- */
+        .modern-form {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 40px 16px 40px 16px;
+            padding: 2.5rem 2.2rem;
+            border: 1px solid rgba(255,255,255,0.7);
+            box-shadow: 0 15px 35px -10px rgba(26, 55, 40, 0.15);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .input-group {
+            position: relative;
+            width: 100%;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 1.2rem 1.2rem 0.6rem 1.2rem;
+            border: 1.5px solid rgba(200, 215, 208, 0.5);
+            border-radius: 36px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.6);
+            transition: all 0.25s ease;
+            outline: none;
+            color: var(--gray-800);
+            font-weight: 500;
+        }
+
+        .input-group textarea {
+            border-radius: 30px;
+            resize: vertical;
+            min-height: 120px;
+            padding-top: 1.5rem;
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 1.2rem;
+            top: 1rem;
+            font-size: 1rem;
+            color: var(--gray-500);
+            font-weight: 500;
+            pointer-events: none;
+            transition: 0.2s ease-out;
+            background: transparent;
+            padding: 0 0.2rem;
+        }
+
+        /* floating label effect */
+        .input-group input:focus ~ label,
+        .input-group input:not(:placeholder-shown) ~ label,
+        .input-group textarea:focus ~ label,
+        .input-group textarea:not(:placeholder-shown) ~ label {
+            top: -0.4rem;
+            left: 0.9rem;
+            font-size: 0.75rem;
+            background: white;
+            padding: 0 0.5rem;
+            color: var(--primary-600);
+            font-weight: 600;
+            border-radius: 20px;
+            backdrop-filter: blur(2px);
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            border-color: var(--primary-400);
+            background: white;
+            box-shadow: 0 0 0 5px rgba(90, 185, 150, 0.15);
+        }
+
+        .input-group input:not(:placeholder-shown):not(:focus),
+        .input-group textarea:not(:placeholder-shown):not(:focus) {
+            border-color: var(--gray-300);
+            background: white;
+        }
+
+        .btn-submit-modern {
             background: var(--primary-600);
             color: white;
             border: none;
-            padding: 1.2rem;
+            padding: 1.2rem 2rem;
             border-radius: 60px;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
             cursor: pointer;
             transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(45,132,100,0.3);
+            letter-spacing: 0.3px;
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(4px);
         }
-        .btn-submit:hover { background: var(--primary-700); }
+        .btn-submit-modern:hover {
+            background: var(--primary-700);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px rgba(35,107,80,0.35);
+        }
 
         footer {
             background: var(--gray-900);
@@ -628,7 +786,12 @@
             grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 3rem;
         }
-        .footer-bottom { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--gray-700); text-align: center; }
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-700);
+            text-align: center;
+        }
 
         @media (max-width: 900px) {
             .hero-grid, .about-grid, .contact-container, .footer-grid, .gallery-template {
@@ -636,10 +799,14 @@
             }
             nav ul { display: none; }
             .menu-toggle { display: block; }
-            .gallery-template { grid-template-columns: repeat(2, 1fr); } /* two columns on tablet */
+            .gallery-template { grid-template-columns: repeat(2, 1fr); }
+            .contact-container {
+                padding: 2rem 1.5rem;
+            }
         }
         @media (max-width: 500px) {
             .gallery-template { grid-template-columns: 1fr; }
+            .phone-large { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -648,7 +815,6 @@
         <div class="container header-inner">
             <div class="logo-wrapper">
                 <div class="logo-frame">
-                    <!-- LOGO: save as "logo.png" inside image folder -->
                     <img src="image/logo.png" alt="Tembwo Cleaning" onerror="this.onerror=null; this.src='https://via.placeholder.com/60x60?text=Tembwo';">
                 </div>
                 <div class="brand">Tembwo <span>Cleaning</span></div>
@@ -665,7 +831,6 @@
         </div>
     </header>
 
-    <!-- mobile navigation (now full-screen, no hero blockage) -->
     <div class="overlay" id="overlay"></div>
     <div class="mobile-nav" id="mobileNav">
         <button class="close-menu" id="closeMenu"><i class="fas fa-times"></i></button>
@@ -677,13 +842,12 @@
         </ul>
     </div>
 
-    <!-- Floating WhatsApp button using the number 0729 553755 -->
     <a href="https://wa.me/254729553755" class="wa-float" target="_blank" title="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <main>
-        <!-- HERO with template images: hero-stack-1.jpg, hero-stack-2.jpg, hero-stack-3.jpg -->
+        <!-- HERO (same) -->
         <section id="home" class="hero">
             <div class="hero-bg"></div>
             <div class="container hero-grid">
@@ -697,7 +861,6 @@
                 </div>
                 <div class="hero-image-gallery">
                     <div class="image-stack">
-                        <!-- images: hero-stack-1.jpg, hero-stack-2.jpg, hero-stack-3.jpg -->
                         <img class="stack-item" src="image/hero-stack-1.jpg" alt="cleaner" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300?text=Cleaning+1'">
                         <img class="stack-item" src="image/hero-stack-2.jpg" alt="cleaning supplies" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300?text=Cleaning+2'">
                         <img class="stack-item" src="image/hero-stack-3.jpg" alt="sparkling kitchen" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300?text=Cleaning+3'">
@@ -711,55 +874,24 @@
             </div>
         </section>
 
-        <!-- SERVICES (unchanged) -->
+        <!-- SERVICES -->
         <section id="services" class="section">
             <div class="container">
                 <h2 class="section-title">Cleaning services</h2>
                 <div class="section-subtitle">Tailored plans for every space — always with attention to detail.</div>
                 <div class="services-grid" id="servicesGrid">
-                    <div class="service-card" data-service="home">
-                        <div class="service-icon"><i class="fas fa-home"></i></div>
-                        <h3>Home</h3>
-                        <p>Regular or deep cleaning for apartments and houses.</p>
-                        <button class="service-link learnMoreBtn"><i class="fas fa-info-circle"></i> Learn more <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                    <div class="service-card" data-service="office">
-                        <div class="service-icon"><i class="fas fa-building"></i></div>
-                        <h3>Office</h3>
-                        <p>Professional spaces, after-hours service available.</p>
-                        <button class="service-link learnMoreBtn"><i class="fas fa-info-circle"></i> Learn more <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                    <div class="service-card" data-service="eco">
-                        <div class="service-icon"><i class="fas fa-leaf"></i></div>
-                        <h3>Eco deep clean</h3>
-                        <p>Zero harsh chemicals, allergen-free.</p>
-                        <button class="service-link learnMoreBtn"><i class="fas fa-info-circle"></i> Learn more <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                    <div class="service-card" data-service="move">
-                        <div class="service-icon"><i class="fas fa-truck"></i></div>
-                        <h3>Move in/out</h3>
-                        <p>Complete vacancy cleaning, stress-free.</p>
-                        <button class="service-link learnMoreBtn"><i class="fas fa-info-circle"></i> Learn more <i class="fas fa-arrow-right"></i></button>
-                    </div>
+                    <div class="service-card" data-service="home"><div class="service-icon"><i class="fas fa-home"></i></div><h3>Home</h3><p>Regular or deep cleaning.</p><button class="service-link learnMoreBtn"><i class="fas fa-info-circle"></i> Learn more <i class="fas fa-arrow-right"></i></button></div>
+                    <div class="service-card" data-service="office"><div class="service-icon"><i class="fas fa-building"></i></div><h3>Office</h3><p>After-hours service available.</p><button class="service-link learnMoreBtn"><i class="fas fa-info-circle"></i> Learn more <i class="fas fa-arrow-right"></i></button></div>
+                    <div class="service-card" data-service="eco"><div class="service-icon"><i class="fas fa-leaf"></i></div><h3>Eco deep clean</h3><p>Zero harsh chemicals.</p><button class="service-link learnMoreBtn"><i class="fas fa-info-circle"></i> Learn more <i class="fas fa-arrow-right"></i></button></div>
+                    <div class="service-card" data-service="move"><div class="service-icon"><i class="fas fa-truck"></i></div><h3>Move in/out</h3><p>Complete vacancy cleaning.</p><button class="service-link learnMoreBtn"><i class="fas fa-info-circle"></i> Learn more <i class="fas fa-arrow-right"></i></button></div>
                 </div>
             </div>
         </section>
 
         <!-- MODAL -->
-        <div class="modal" id="serviceModal">
-            <div class="modal-card">
-                <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
-                <div class="modal-icon" id="modalIcon"><i class="fas fa-broom"></i></div>
-                <h2 id="modalTitle">Service details</h2>
-                <p id="modalDesc">Detailed description appears here...</p>
-                <div class="modal-footer">
-                    <a href="#contact" class="btn btn-primary" id="modalCta"><i class="fas fa-calendar-check"></i> Book</a>
-                    <button class="btn-outline btn" id="modalCloseBtn">Close</button>
-                </div>
-            </div>
-        </div>
+        <div class="modal" id="serviceModal"><div class="modal-card"><button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button><div class="modal-icon" id="modalIcon"><i class="fas fa-broom"></i></div><h2 id="modalTitle">Service details</h2><p id="modalDesc">Detailed description</p><div class="modal-footer"><a href="#contact" class="btn btn-primary" id="modalCta"><i class="fas fa-calendar-check"></i> Book</a><button class="btn-outline btn" id="modalCloseBtn">Close</button></div></div></div>
 
-        <!-- ABOUT unchanged -->
+        <!-- ABOUT -->
         <section id="about" class="section">
             <div class="container about-grid">
                 <div class="about-gallery">
@@ -768,42 +900,25 @@
                     <div class="gallery-item"><i class="fas fa-user-check" style="font-size: 2.5rem;"></i> <h4>Vetted staff</h4></div>
                     <div class="gallery-item"><i class="fas fa-calendar-alt" style="font-size: 2.5rem;"></i> <h4>Flexible</h4></div>
                 </div>
-                <div class="about-text">
-                    <h2 class="section-title" style="font-size: 2.5rem;">More than cleaners — we're your partners</h2>
-                    <p style="font-size: 1.2rem; color: var(--gray-600);">Tembwo was founded in Nairobi with a simple idea: treat every home like our own. We train our team, use safe products, and listen to your needs.</p>
-                </div>
+                <div><h2 class="section-title" style="font-size: 2.5rem;">More than cleaners — we're your partners</h2><p style="font-size: 1.2rem;">Tembwo was founded in Nairobi with a simple idea: treat every home like our own.</p></div>
             </div>
         </section>
 
-        <!-- NEW GALLERY SECTION (template images) -->
+        <!-- GALLERY -->
         <section class="section">
             <div class="container">
                 <h2 class="section-title">Our work in pictures</h2>
-                <div class="section-subtitle">Moments of sparkle from recent jobs — real results.</div>
+                <div class="section-subtitle">Moments of sparkle from recent jobs.</div>
                 <div class="gallery-template">
-                    <!-- image names: gallery-kitchen.jpg, gallery-living.jpg, gallery-bathroom.jpg, gallery-office.jpg -->
-                    <div class="gallery-card">
-                        <img src="image/gallery-kitchen.jpg" alt="clean kitchen" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250?text=Kitchen'">
-                        <p>Kitchen shine</p>
-                    </div>
-                    <div class="gallery-card">
-                        <img src="image/gallery-living.jpg" alt="living room" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250?text=Living+room'">
-                        <p>Living area</p>
-                    </div>
-                    <div class="gallery-card">
-                        <img src="image/gallery-bathroom.jpg" alt="bathroom" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250?text=Bathroom'">
-                        <p>Bathroom sparkle</p>
-                    </div>
-                    <div class="gallery-card">
-                        <img src="image/gallery-office.jpg" alt="office space" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250?text=Office'">
-                        <p>Office desk</p>
-                    </div>
+                    <div class="gallery-card"><img src="image/gallery-kitchen.jpg" alt="kitchen" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250?text=Kitchen'"><p>Kitchen shine</p></div>
+                    <div class="gallery-card"><img src="image/gallery-living.jpg" alt="living" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250?text=Living'"><p>Living area</p></div>
+                    <div class="gallery-card"><img src="image/gallery-bathroom.jpg" alt="bathroom" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250?text=Bathroom'"><p>Bathroom sparkle</p></div>
+                    <div class="gallery-card"><img src="image/gallery-office.jpg" alt="office" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250?text=Office'"><p>Office desk</p></div>
                 </div>
-                <p style="margin-top: 1.2rem; color: var(--gray-500);"><i class="fas fa-images"></i> Use filenames: gallery-kitchen.jpg, gallery-living.jpg, gallery-bathroom.jpg, gallery-office.jpg inside /image/</p>
             </div>
         </section>
 
-        <!-- CONTACT unchanged -->
+        <!-- MODERN CONTACT (completely revamped) -->
         <section id="contact" class="contact-section section">
             <div class="container">
                 <div class="contact-container">
@@ -812,18 +927,35 @@
                         <div class="phone-large" id="callNow">
                             <i class="fas fa-phone-alt"></i> 0729 553755
                         </div>
-                        <div class="contact-details">
-                            <div class="detail-item"><i class="fas fa-envelope"></i> hello@tembwo.co.ke</div>
-                            <div class="detail-item"><i class="fas fa-map-marker-alt"></i> Nairobi · Kiambu · Thika</div>
-                            <div class="detail-item"><i class="fas fa-clock"></i> Mon–Sat: 8am – 6pm</div>
+                        <div class="contact-details-modern">
+                            <div class="detail-item-modern"><i class="fas fa-envelope"></i> hello@tembwo.co.ke</div>
+                            <div class="detail-item-modern"><i class="fas fa-map-marker-alt"></i> Nairobi · Kiambu · Thika</div>
+                            <div class="detail-item-modern"><i class="fas fa-clock"></i> Mon–Sat: 8am – 6pm</div>
+                        </div>
+                        <div class="social-links-modern">
+                            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
                         </div>
                     </div>
+
+                    <!-- modern form with floating labels -->
                     <div>
-                        <form class="contact-form" id="contactForm">
-                            <input type="text" placeholder="Your name" class="form-input" required>
-                            <input type="email" placeholder="Email address" class="form-input" required>
-                            <textarea rows="4" placeholder="How can we help?" class="form-input"></textarea>
-                            <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Send message</button>
+                        <form class="modern-form" id="contactForm">
+                            <div class="input-group">
+                                <input type="text" id="name" placeholder=" " required>
+                                <label for="name">Your name</label>
+                            </div>
+                            <div class="input-group">
+                                <input type="email" id="email" placeholder=" " required>
+                                <label for="email">Email address</label>
+                            </div>
+                            <div class="input-group">
+                                <textarea id="message" rows="4" placeholder=" " required></textarea>
+                                <label for="message">How can we help?</label>
+                            </div>
+                            <button type="submit" class="btn-submit-modern"><i class="fas fa-paper-plane"></i> Send message</button>
                         </form>
                     </div>
                 </div>
@@ -834,37 +966,31 @@
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div><div class="footer-logo">Tembwo</div><p style="margin-top: 1rem;">Cleaning with care.</p></div>
-                <div><h4 style="color:white;">Quick links</h4><ul style="list-style: none;"><li><a href="#home" style="color: var(--gray-300);">Home</a></li><li><a href="#services" style="color: var(--gray-300);">Services</a></li></ul></div>
+                <div><div class="footer-logo">Tembwo</div><p style="margin-top:1rem;">Cleaning with care.</p></div>
+                <div><h4 style="color:white;">Quick links</h4><ul style="list-style:none;"><li><a href="#home" style="color:var(--gray-300);">Home</a></li><li><a href="#services" style="color:var(--gray-300);">Services</a></li></ul></div>
                 <div><h4 style="color:white;">Contact</h4><p>0729 553755<br>hello@tembwo.co.ke</p></div>
                 <div><h4 style="color:white;">Location</h4><p>Nairobi, Kenya</p></div>
             </div>
-            <div class="footer-bottom">
-                <p>© 2026 Tembwo Cleaning Services. All rights reserved.</p> <!-- year updated -->
-            </div>
+            <div class="footer-bottom"><p>© 2026 Tembwo Cleaning Services. All rights reserved.</p></div>
         </div>
     </footer>
 
     <script>
         (function() {
-            // header scroll
             const header = document.getElementById('header');
-            window.addEventListener('scroll', function() {
-                header.classList.toggle('scrolled', window.scrollY > 20);
-            });
+            window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20));
 
-            // mobile menu (full screen overlay)
+            // mobile menu
             const menuToggle = document.getElementById('menuToggle');
             const mobileNav = document.getElementById('mobileNav');
             const overlay = document.getElementById('overlay');
             const closeMenu = document.getElementById('closeMenu');
-
             function openMobile() { mobileNav.classList.add('open'); overlay.classList.add('active'); }
             function closeMobile() { mobileNav.classList.remove('open'); overlay.classList.remove('active'); }
             menuToggle.addEventListener('click', openMobile);
             closeMenu.addEventListener('click', closeMobile);
             overlay.addEventListener('click', closeMobile);
-            document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', closeMobile));
+            document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeMobile));
 
             // modal
             const modal = document.getElementById('serviceModal');
@@ -876,9 +1002,9 @@
             const modalCta = document.getElementById('modalCta');
             const serviceDetails = {
                 home: { title: 'Home cleaning', desc: 'Vacuuming, mopping, kitchen & bath. Safe products.', icon: 'fa-home' },
-                office: { title: 'Office cleaning', desc: 'After‑hours, carpet, desk wipe, trash.', icon: 'fa-building' },
+                office: { title: 'Office cleaning', desc: 'After‑hours, carpet, desk wipe.', icon: 'fa-building' },
                 eco: { title: 'Eco deep clean', desc: 'Chemical‑free, HEPA, plant‑based.', icon: 'fa-leaf' },
-                move: { title: 'Move in/out', desc: 'Full vacancy clean, inside cabinets, baseboards.', icon: 'fa-truck' }
+                move: { title: 'Move in/out', desc: 'Full vacancy clean, inside cabinets.', icon: 'fa-truck' }
             };
             document.querySelectorAll('.learnMoreBtn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
@@ -905,8 +1031,8 @@
             // phone click
             document.getElementById('callNow')?.addEventListener('click', () => window.location.href = 'tel:0729553755');
 
-            // form prevent
-            document.getElementById('contactForm')?.addEventListener('submit', (e) => { e.preventDefault(); alert('📬 Demo: message sent!'); });
+            // form submit (modern)
+            document.getElementById('contactForm')?.addEventListener('submit', (e) => { e.preventDefault(); alert('📬 Demo: message sent! We’ll reply shortly.'); });
 
             // rotating text
             const wordSpan = document.getElementById('changingWord');
